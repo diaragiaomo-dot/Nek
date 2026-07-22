@@ -1,0 +1,6 @@
+{
+  "name": "Nek Fan Club Italia",
+  "description": "Sito non ufficiale dedicato al cantante Nek, con notizie, discografia, tour e community.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
