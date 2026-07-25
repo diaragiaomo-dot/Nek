@@ -22,7 +22,7 @@ export default function Canzoni() {
     const fetchSongs = async () => {
       setLoading(true);
       try {
-        const response = await fetch("https://itunes.apple.com/search?term=nek+filippo&entity=song&limit=50");
+        const response = await fetch("https://itunes.apple.com/search?term=nek+filippo&entity=song&limit=50&country=IT");
         const data = await response.json();
         
         // Filter out some random stuff and sort

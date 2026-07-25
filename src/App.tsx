@@ -14,6 +14,7 @@ import News from "./pages/News";
 import Video from "./pages/Video";
 import FanClub from "./pages/FanClub";
 import Contatti from "./pages/Contatti";
+import Testi from "./pages/Testi";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="biografia" element={<Biografia />} />
           <Route path="discografia" element={<Discografia />} />
           <Route path="canzoni" element={<Canzoni />} />
+          <Route path="testi" element={<Testi />} />
           <Route path="tour" element={<Tour />} />
           <Route path="news" element={<News />} />
           <Route path="video" element={<Video />} />

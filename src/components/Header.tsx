@@ -11,6 +11,7 @@ export default function Header() {
     { name: "Biografia", path: "/biografia" },
     { name: "Discografia", path: "/discografia" },
     { name: "Canzoni", path: "/canzoni" },
+    { name: "Testi", path: "/testi" },
     { name: "Video", path: "/video" },
     { name: "Tour", path: "/tour" },
     { name: "News", path: "/news" },

@@ -1,34 +1,40 @@
 import { Calendar, Tag } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function News() {
+  const navigate = useNavigate();
   const news = [
     { 
       title: "Nek annuncia nuove date del tour estivo 2026", 
       desc: "A grande richiesta, aggiunte nuove date al tour nei principali teatri italiani. I biglietti saranno disponibili da domani.",
       date: "10 Maggio 2026", 
       category: "Tour",
-      img: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Nek_Valladolid_2009.jpg" 
+      img: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Nek_Valladolid_2009.jpg",
+      link: "/tour"
     },
     { 
       title: "\"Alaska\" compie 27 anni: il disco che ha fatto la storia", 
       desc: "Oggi celebriamo il 27esimo anniversario di uno degli album più iconici di Nek, ripercorrendo la sua creazione.",
       date: "3 Maggio 2026", 
       category: "Musica",
-      img: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Nek_2019.jpg" 
+      img: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Nek_2019.jpg",
+      link: "/discografia"
     },
     { 
       title: "Nek live a Milano: una serata indimenticabile", 
       desc: "La recensione completa e la galleria fotografica del concerto di Milano al Forum di Assago. Emozioni allo stato puro.",
       date: "28 Aprile 2026", 
       category: "Recensioni",
-      img: "https://upload.wikimedia.org/wikipedia/commons/d/da/Nek_in_concerto.jpg" 
+      img: "https://upload.wikimedia.org/wikipedia/commons/d/da/Nek_in_concerto.jpg",
+      link: "/tour"
     },
     { 
       title: "Il Fan Club ufficiale si rinnova: scopri i nuovi vantaggi", 
       desc: "Da oggi la piattaforma del Fan Club offre nuove funzionalità esclusive, sconti sui biglietti e merchandising.",
       date: "15 Aprile 2026", 
       category: "Fan Club",
-      img: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Nek_in_concerto_a_Assago.jpg" 
+      img: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Nek_in_concerto_a_Assago.jpg",
+      link: "/fanclub"
     },
   ];
 
@@ -41,7 +47,7 @@ export default function News() {
 
       <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
         {/* Featured News (spans 2 columns on lg) */}
-        <div className="lg:col-span-2 relative rounded-3xl overflow-hidden group cursor-pointer aspect-video md:aspect-[21/9]">
+        <div onClick={() => navigate(news[0].link)} className="lg:col-span-2 relative rounded-3xl overflow-hidden group cursor-pointer aspect-video md:aspect-[21/9]">
           <img src={news[0].img} alt={news[0].title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent"></div>
           <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full md:w-3/4">
@@ -56,7 +62,7 @@ export default function News() {
 
         {/* Regular News Items */}
         {news.slice(1).map((item, i) => (
-          <div key={i} className="flex flex-col bg-[#0a0a0a] rounded-2xl overflow-hidden border border-white/10 group cursor-pointer hover:border-white/20 transition-all">
+          <div key={i} onClick={() => navigate(item.link)} className="flex flex-col bg-[#0a0a0a] rounded-2xl overflow-hidden border border-white/10 group cursor-pointer hover:border-white/20 transition-all">
             <div className="w-full aspect-[16/9] overflow-hidden">
               <img src={item.img} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>

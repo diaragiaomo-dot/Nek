@@ -106,16 +106,16 @@ export default function Home() {
                 <div className="w-1 h-4 bg-[#e60000]"></div>
                 <h3 className="text-sm font-bold tracking-widest uppercase">Ultime Notizie</h3>
               </div>
-              <a href="#" className="text-xs text-[#e60000] hover:underline">Vedi tutte</a>
+              <a onClick={() => navigate('/news')} className="text-xs text-[#e60000] hover:underline cursor-pointer">Vedi tutte</a>
             </div>
             
             <div className="flex flex-col gap-6 flex-grow">
               {[
-                { title: "Nek annuncia nuove date del tour estivo 2026", date: "10 Maggio 2026", img: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Nek_Valladolid_2009.jpg" },
-                { title: "\"Alaska\" compie 27 anni: il disco che ha fatto la storia", date: "3 Maggio 2026", img: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Nek_2019.jpg" },
-                { title: "Nek live a Milano: una serata indimenticabile", date: "28 Aprile 2026", img: "https://upload.wikimedia.org/wikipedia/commons/d/da/Nek_in_concerto.jpg" }
+                { title: "Nek annuncia nuove date del tour estivo 2026", date: "10 Maggio 2026", img: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Nek_Valladolid_2009.jpg", link: "/tour" },
+                { title: "\"Alaska\" compie 27 anni: il disco che ha fatto la storia", date: "3 Maggio 2026", img: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Nek_2019.jpg", link: "/discografia" },
+                { title: "Nek live a Milano: una serata indimenticabile", date: "28 Aprile 2026", img: "https://upload.wikimedia.org/wikipedia/commons/d/da/Nek_in_concerto.jpg", link: "/tour" }
               ].map((news, i) => (
-                <div key={i} className="flex gap-4 group cursor-pointer">
+                <div key={i} onClick={() => navigate(news.link)} className="flex gap-4 group cursor-pointer">
                   <div className="w-20 h-14 rounded-lg overflow-hidden flex-shrink-0">
                     <img src={news.img} alt={news.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                   </div>
