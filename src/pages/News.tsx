@@ -62,7 +62,7 @@ export default function News() {
 
         {/* Regular News Items */}
         {news.slice(1).map((item, i) => (
-          <a key={i} href={item.link} target="_blank" rel="noopener noreferrer" className="flex flex-col bg-[#0a0a0a] rounded-2xl overflow-hidden border border-white/10 group cursor-pointer hover:border-white/20 transition-all block">
+          <a key={i} href={item.link} target="_blank" rel="noopener noreferrer" className="flex flex-col bg-[#0a0a0a] rounded-2xl overflow-hidden border border-white/10 group cursor-pointer hover:border-white/20 transition-all">
             <div className="w-full aspect-[16/9] overflow-hidden">
               <img src={item.img} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>

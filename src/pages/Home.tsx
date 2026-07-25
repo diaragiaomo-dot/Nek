@@ -130,7 +130,7 @@ export default function Home() {
                 { title: "Sanremo 2024: Nek e Francesco Renga in gara con 'Pazzo di te'", date: "6 Febbraio 2024", img: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Nek_2019.jpg", link: "https://www.sorrisi.com/musica/sanremo/renga-nek-a-sanremo-2024-pazzo-di-te/" },
                 { title: "L'album 'RengaNek': un progetto a due voci che conquista il pubblico", date: "8 Settembre 2023", img: "https://upload.wikimedia.org/wikipedia/commons/d/da/Nek_in_concerto.jpg", link: "https://tg24.sky.it/spettacolo/musica/2023/09/08/renga-nek-album" }
               ].map((news, i) => (
-                <a key={i} href={news.link} target="_blank" rel="noopener noreferrer" className="flex gap-4 group cursor-pointer block">
+                <a key={i} href={news.link} target="_blank" rel="noopener noreferrer" className="flex gap-4 group cursor-pointer">
                   <div className="w-20 h-14 rounded-lg overflow-hidden flex-shrink-0">
                     <img src={news.img} alt={news.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                   </div>
@@ -209,6 +209,28 @@ export default function Home() {
               Vedi tutte le canzoni 
               <span className="group-hover:translate-x-1 transition-transform">→</span>
             </a>
+          </div>
+
+          {/* Video in evidenza */}
+          <div className="lg:col-span-12 my-2 mt-8">
+            <div className="flex justify-center items-center gap-2 mb-6">
+              <div className="w-1 h-4 bg-[#e60000]"></div>
+              <h3 className="text-xl font-bold tracking-widest uppercase">Video in Evidenza</h3>
+              <div className="w-1 h-4 bg-[#e60000]"></div>
+            </div>
+            <div className="relative aspect-video rounded-2xl overflow-hidden group border border-white/10 shadow-2xl max-w-4xl mx-auto">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube.com/embed/zs5G5qPudzo" 
+                title="Nek - Laura non c'è (Official Video)" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerPolicy="strict-origin-when-cross-origin" 
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              ></iframe>
+            </div>
           </div>
 
           {/* Slider Fotografico */}
