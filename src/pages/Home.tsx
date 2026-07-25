@@ -1,4 +1,4 @@
-import { Play, Pause, Calendar, Music, Mail } from "lucide-react";
+import { Play, Pause, Calendar, Music, Mail, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "../lib/utils";
 import { useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
@@ -7,6 +7,21 @@ export default function Home() {
   const navigate = useNavigate();
   const [playingId, setPlayingId] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const sliderImages = [
+    "https://upload.wikimedia.org/wikipedia/commons/e/e9/Nek_Valladolid_2009.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/c/cf/Nek_2019.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/d/da/Nek_in_concerto.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/a/a4/Nek_in_concerto_a_Assago.jpg"
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [sliderImages.length]);
 
   const topSongs = [
     { id: "laura", title: "Laura non c'è", preview: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/a4/bc/59/a4bc59f0-12d2-2901-3240-462776b90e43/mzaf_16780296813686141943.plus.aac.p.m4a" },
@@ -111,11 +126,11 @@ export default function Home() {
             
             <div className="flex flex-col gap-6 flex-grow">
               {[
-                { title: "Nek annuncia nuove date del tour estivo 2026", date: "10 Maggio 2026", img: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Nek_Valladolid_2009.jpg", link: "/tour" },
-                { title: "\"Alaska\" compie 27 anni: il disco che ha fatto la storia", date: "3 Maggio 2026", img: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Nek_2019.jpg", link: "/discografia" },
-                { title: "Nek live a Milano: una serata indimenticabile", date: "28 Aprile 2026", img: "https://upload.wikimedia.org/wikipedia/commons/d/da/Nek_in_concerto.jpg", link: "/tour" }
+                { title: "RengaNek: Il successo del tour nei teatri e le nuove date", date: "15 Marzo 2024", img: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Nek_Valladolid_2009.jpg", link: "https://www.ilmessaggero.it/spettacoli/musica/renga_nek_tour_2024_date_biglietti_concerti-7954123.html" },
+                { title: "Sanremo 2024: Nek e Francesco Renga in gara con 'Pazzo di te'", date: "6 Febbraio 2024", img: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Nek_2019.jpg", link: "https://www.sorrisi.com/musica/sanremo/renga-nek-a-sanremo-2024-pazzo-di-te/" },
+                { title: "L'album 'RengaNek': un progetto a due voci che conquista il pubblico", date: "8 Settembre 2023", img: "https://upload.wikimedia.org/wikipedia/commons/d/da/Nek_in_concerto.jpg", link: "https://tg24.sky.it/spettacolo/musica/2023/09/08/renga-nek-album" }
               ].map((news, i) => (
-                <div key={i} onClick={() => navigate(news.link)} className="flex gap-4 group cursor-pointer">
+                <a key={i} href={news.link} target="_blank" rel="noopener noreferrer" className="flex gap-4 group cursor-pointer block">
                   <div className="w-20 h-14 rounded-lg overflow-hidden flex-shrink-0">
                     <img src={news.img} alt={news.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                   </div>
@@ -123,7 +138,7 @@ export default function Home() {
                     <h4 className="text-sm font-medium text-gray-200 group-hover:text-white line-clamp-2 leading-tight">{news.title}</h4>
                     <span className="text-xs text-gray-500 mt-1">{news.date}</span>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           </div>
@@ -194,6 +209,55 @@ export default function Home() {
               Vedi tutte le canzoni 
               <span className="group-hover:translate-x-1 transition-transform">→</span>
             </a>
+          </div>
+
+          {/* Slider Fotografico */}
+          <div className="lg:col-span-12 my-2 mt-8">
+            <div className="flex justify-center items-center gap-2 mb-6">
+              <div className="w-1 h-4 bg-[#e60000]"></div>
+              <h3 className="text-xl font-bold tracking-widest uppercase">Galleria Fotografica</h3>
+              <div className="w-1 h-4 bg-[#e60000]"></div>
+            </div>
+            <div className="relative aspect-[21/9] md:aspect-[3/1] rounded-2xl overflow-hidden group border border-white/10 shadow-2xl">
+              {sliderImages.map((img, idx) => (
+                <img 
+                  key={idx}
+                  src={img}
+                  alt={`Nek slide ${idx + 1}`}
+                  className={cn(
+                    "absolute inset-0 w-full h-full object-cover transition-opacity duration-1000",
+                    currentSlide === idx ? "opacity-100" : "opacity-0"
+                  )}
+                />
+              ))}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
+              
+              <button 
+                onClick={() => setCurrentSlide((prev) => (prev - 1 + sliderImages.length) % sliderImages.length)}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-[#e60000] text-white rounded-full flex items-center justify-center backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 z-10"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button 
+                onClick={() => setCurrentSlide((prev) => (prev + 1) % sliderImages.length)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-[#e60000] text-white rounded-full flex items-center justify-center backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 z-10"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+              
+              <div className="absolute bottom-4 left-1/2 -translate-y-1/2 flex gap-2 z-10">
+                {sliderImages.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentSlide(idx)}
+                    className={cn(
+                      "w-2 h-2 rounded-full transition-all",
+                      currentSlide === idx ? "bg-[#e60000] w-6" : "bg-white/50 hover:bg-white"
+                    )}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Row 2: Concerts (3 cols), Videos (6 cols), Newsletter (3 cols) */}

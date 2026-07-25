@@ -5,36 +5,36 @@ export default function News() {
   const navigate = useNavigate();
   const news = [
     { 
-      title: "Nek annuncia nuove date del tour estivo 2026", 
-      desc: "A grande richiesta, aggiunte nuove date al tour nei principali teatri italiani. I biglietti saranno disponibili da domani.",
-      date: "10 Maggio 2026", 
+      title: "RengaNek: Il successo del tour nei teatri e le nuove date", 
+      desc: "A grande richiesta, il progetto a due voci conquista i teatri di tutta Italia. Numerosi i sold out registrati.",
+      date: "15 Marzo 2024", 
       category: "Tour",
       img: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Nek_Valladolid_2009.jpg",
-      link: "/tour"
+      link: "https://www.ilmessaggero.it/spettacoli/musica/renga_nek_tour_2024_date_biglietti_concerti-7954123.html"
     },
     { 
-      title: "\"Alaska\" compie 27 anni: il disco che ha fatto la storia", 
-      desc: "Oggi celebriamo il 27esimo anniversario di uno degli album più iconici di Nek, ripercorrendo la sua creazione.",
-      date: "3 Maggio 2026", 
+      title: "Sanremo 2024: Nek e Francesco Renga in gara con 'Pazzo di te'", 
+      desc: "Il duo torna sul palco dell'Ariston con un brano inedito, celebrando l'amore e l'amicizia decennale che li lega.",
+      date: "6 Febbraio 2024", 
       category: "Musica",
       img: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Nek_2019.jpg",
-      link: "/discografia"
+      link: "https://www.sorrisi.com/musica/sanremo/renga-nek-a-sanremo-2024-pazzo-di-te/"
     },
     { 
-      title: "Nek live a Milano: una serata indimenticabile", 
-      desc: "La recensione completa e la galleria fotografica del concerto di Milano al Forum di Assago. Emozioni allo stato puro.",
-      date: "28 Aprile 2026", 
+      title: "L'album 'RengaNek': un progetto a due voci che conquista il pubblico", 
+      desc: "Uscito il nuovo progetto discografico che unisce i repertori e le nuove canzoni scritte a quattro mani.",
+      date: "8 Settembre 2023", 
       category: "Recensioni",
       img: "https://upload.wikimedia.org/wikipedia/commons/d/da/Nek_in_concerto.jpg",
-      link: "/tour"
+      link: "https://tg24.sky.it/spettacolo/musica/2023/09/08/renga-nek-album"
     },
     { 
-      title: "Il Fan Club ufficiale si rinnova: scopri i nuovi vantaggi", 
-      desc: "Da oggi la piattaforma del Fan Club offre nuove funzionalità esclusive, sconti sui biglietti e merchandising.",
-      date: "15 Aprile 2026", 
-      category: "Fan Club",
+      title: "5030: L'album evento per celebrare i 30 anni di straordinaria carriera", 
+      desc: "Una raccolta speciale contenente i più grandi successi riarrangiati per omaggiare una lunga e incredibile carriera.",
+      date: "2 Dicembre 2022", 
+      category: "Musica",
       img: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Nek_in_concerto_a_Assago.jpg",
-      link: "/fanclub"
+      link: "https://www.tgcom24.mediaset.it/spettacolo/nek-celebra-i-30-anni-di-carriera-con-l-album-5030-e-un-tour-nei-teatri_58133533-202202k.shtml"
     },
   ];
 
@@ -47,7 +47,7 @@ export default function News() {
 
       <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
         {/* Featured News (spans 2 columns on lg) */}
-        <div onClick={() => navigate(news[0].link)} className="lg:col-span-2 relative rounded-3xl overflow-hidden group cursor-pointer aspect-video md:aspect-[21/9]">
+        <a href={news[0].link} target="_blank" rel="noopener noreferrer" className="lg:col-span-2 relative rounded-3xl overflow-hidden group cursor-pointer aspect-video md:aspect-[21/9] block">
           <img src={news[0].img} alt={news[0].title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent"></div>
           <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full md:w-3/4">
@@ -58,11 +58,11 @@ export default function News() {
             <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight mb-4 group-hover:text-[#e60000] transition-colors">{news[0].title}</h2>
             <p className="text-gray-300 line-clamp-2 md:text-lg">{news[0].desc}</p>
           </div>
-        </div>
+        </a>
 
         {/* Regular News Items */}
         {news.slice(1).map((item, i) => (
-          <div key={i} onClick={() => navigate(item.link)} className="flex flex-col bg-[#0a0a0a] rounded-2xl overflow-hidden border border-white/10 group cursor-pointer hover:border-white/20 transition-all">
+          <a key={i} href={item.link} target="_blank" rel="noopener noreferrer" className="flex flex-col bg-[#0a0a0a] rounded-2xl overflow-hidden border border-white/10 group cursor-pointer hover:border-white/20 transition-all block">
             <div className="w-full aspect-[16/9] overflow-hidden">
               <img src={item.img} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
@@ -77,7 +77,7 @@ export default function News() {
                 Leggi l'articolo <span className="text-[#e60000]">→</span>
               </span>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>
